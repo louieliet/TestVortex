@@ -8,14 +8,17 @@ public class Movement : MonoBehaviour
     //te amo guapa
     //aaaaah
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    private float horizontalInput;
+    private float verticalInput;
+    public float speedInput;
     // Update is called once per frame
     void Update()
     {
+        horizontalInput = Input.GetAxis("Horizontal");
+
+        transform.Translate(Vector2.right * Time.deltaTime
+        * horizontalInput * speedInput);
+
         
     }
 }
