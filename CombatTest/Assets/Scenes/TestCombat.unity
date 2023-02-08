@@ -284,11 +284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e4abdc3899e4a469fbdd1c23891e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 972350801}
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
+  attackDamage: 40
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +386,7 @@ GameObject:
   - component: {fileID: 620559548}
   - component: {fileID: 620559547}
   - component: {fileID: 620559546}
+  - component: {fileID: 620559550}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -506,6 +508,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &620559550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620559545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b684f4644fe2a484c8fb85bc60736876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &876513473
 GameObject:
   m_ObjectHideFlags: 0
