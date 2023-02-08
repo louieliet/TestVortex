@@ -14,6 +14,10 @@ public class enemy : MonoBehaviour
 
     public void TakeDamage(int damage){
         currentHealth-=damage;
+        if(currentHealth <= 0){
+            Die();
+            Destroy(gameObject);
+        }
         //parte de animcaion del enemigo
 
     }
