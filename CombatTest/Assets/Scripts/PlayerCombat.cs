@@ -15,8 +15,14 @@ public class PlayerCombat : MonoBehaviour{
         //Seleccionar la tecla de ataque
         if(Input.GetKeyDown(KeyCode.Space)){
             Attack();
-
         }
+        
+        if(Input.GetKeyDown(KeyCode.E)){
+            getMana();
+        }
+
+
+
     }
     //Funcion de ataque
     void Attack(){
@@ -32,13 +38,15 @@ public class PlayerCombat : MonoBehaviour{
         }
         
     }
-    //visualizar area de ataque
-    void getMana(Collider2D coliision){
-        if(coliision.gameObject.tag == "Mana"){
-            Debug.Log("We get mana");
+    void getMana(){
+
+        Collider2D[] manaOrbs = Physics2D.OverlapCircleAll(attackPoint.position, attackRange,manaLayers);
+        foreach(Collider2D enemy in manaOrbs){
+            Debug.Log("We got mana");
         }
         
     }
+
     //visualizar area de ataque
     void OnDrawGizmosSelected() {
         if (attackPoint == null) return;
