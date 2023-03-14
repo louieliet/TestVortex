@@ -5,6 +5,12 @@ using UnityEngine;
 public class Blips : MonoBehaviour
 {
     public Transform target;
+    public bool keepInBounds = true;
+    public bool LockScale = false;
+    public bool LockRotation = true;
+    public float MinScale = 1f;
+    public float segment; 
+
     Minimap map;
     RectTransform myRect;
 
@@ -24,10 +30,24 @@ public class Blips : MonoBehaviour
     /// LateUpdate is called every frame, if the Behaviour is enabled.
     /// It is called after all Update functions have been called.
     /// </summary>
+    
     private void LateUpdate()
     {
-        Vector2 newPosition = map.TransformPosition(target.position, new Vector3(-segme));
+        //Vector2 newPosition = map.TransformPosition(target.position, new Vector3(-segme));
+        
+        if(keepInBounds){
+            newPosition = map.MoveInside(newPosition);
+        }
+        if(!LockScale){
 
-        myRect.localPosition = newPosition; 
+            float scale = Mathf.Max(MinScale, map.ZoomLevel);
+            myRect.localScale = new Vector3(scale, scale, 1);
+
+        }
+        if(!LockRotation){
+            myRect.localEulerAngles = map.TransformRotation(target.eulerAngles);
+        }
+
+        //myRect.localPosition = newPosition; 
     }
 }

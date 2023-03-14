@@ -10,6 +10,7 @@ public class Minimap : MonoBehaviour
     public float Width;
     public bool isSegmented;
     public float numberofSegments;
+    
 
     Vector2 xRot = Vector2.right;
     Vector2 yRot = Vector2.up;
@@ -39,11 +40,26 @@ public class Minimap : MonoBehaviour
         return newPosition;
     }
 
+    public Vector3 TransformRotation(Vector3 rotation){
+
+        if(LockRotation)
+            return new Vector3(0,0,-rotation.y);
+        else
+            return new Vector3(0,0,target.eulerAngles.y - rotation.y);
+    }
+
     public Vector3 RoundPosition(Vector3 position){
         float segmentWidth = Width / numberofSegments;
         position.x = Mathf.Ceil(position.x / segmentWidth) * segmentWidth;
         position.z = Mathf.Floor(position.z / segmentWidth) * segmentWidth;
         return position;
+    }
+
+    public Vector2 MoveInside(Vector2 point){
+        Rect mapRect = GetComponent<RectTransform>().rect ;
+        point = Vector2.Max(point, mapRect.min);
+        point = Vector2.Min(point, mapRect.max);
+        return point;
     }
 
 }
