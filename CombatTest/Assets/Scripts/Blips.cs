@@ -9,7 +9,7 @@ public class Blips : MonoBehaviour
     public bool LockScale = false;
     public bool LockRotation = true;
     public float MinScale = 1f;
-    public float segment; 
+    public float segmentOffset; 
 
     Minimap map;
     RectTransform myRect;
@@ -33,7 +33,7 @@ public class Blips : MonoBehaviour
     
     private void LateUpdate()
     {
-        //Vector2 newPosition = map.TransformPosition(target.position, new Vector3(-segme));
+        Vector2 newPosition = map.TransformPosition(target.position, new Vector3(-segmentOffset, 0, segmentOffset));
         
         if(keepInBounds){
             newPosition = map.MoveInside(newPosition);

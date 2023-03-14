@@ -27,7 +27,7 @@ public class Minimap : MonoBehaviour
 
         Vector3 offset;
         if(isSegmented){
-            offset = RoundPosition(position) - RoundPosition(target.position);
+            offset = RoundPosition(position) - RoundPosition(target.position) + nudge;
         }
         else{
             offset = position - target.position; 
