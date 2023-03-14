@@ -17,12 +17,6 @@ public class PlayerCombat : MonoBehaviour{
             Attack();
         }
         
-        if(Input.GetKeyDown(KeyCode.E)){
-            getMana();
-        }
-
-
-
     }
     //Funcion de ataque
     void Attack(){
@@ -38,19 +32,24 @@ public class PlayerCombat : MonoBehaviour{
         }
         
     }
-    void getMana(){
-
-        Collider2D[] manaOrbs = Physics2D.OverlapCircleAll(attackPoint.position, attackRange,manaLayers);
-        foreach(Collider2D enemy in manaOrbs){
-            Debug.Log("We got mana");
-        }
-        
-    }
 
     //visualizar area de ataque
     void OnDrawGizmosSelected() {
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position,attackRange);
         
+    }
+
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Mana"){
+            Debug.Log("Mana");
+            Destroy(other);
+        }
     }
 }
